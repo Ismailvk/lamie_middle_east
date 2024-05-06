@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lamie_middle_east/constants/app_colors.dart';
 import 'package:lamie_middle_east/constants/app_styles.dart';
 import 'package:lamie_middle_east/constants/image_strings.dart';
+import 'package:lamie_middle_east/controller/login/login_bloc.dart';
 import 'package:lamie_middle_east/utils/validation.dart';
 import 'package:lamie_middle_east/widgets/button_widget.dart';
+import 'package:lamie_middle_east/widgets/google_button_widget.dart';
 import 'package:lamie_middle_east/widgets/textformfied_widget.dart';
 
 // ignore: must_be_immutable
@@ -20,8 +23,9 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: ListView(
+            padding: EdgeInsets.zero,
             shrinkWrap: true,
             children: [
               Form(
@@ -36,27 +40,70 @@ class LoginScreen extends StatelessWidget {
                       style: AppFonts.welcomeStyle,
                     ),
                     const Text('Login your Account'),
-                    SizedBox(height: size.height / 28),
-                    Text('Username or Email', style: AppFonts.normalBold),
+                    SizedBox(height: size.height / 34),
+                    Text('Username or Email', style: AppFonts.normalBoldBlack),
                     TextFormFieldWidget(
                       hintText: 'Email',
                       controller: emailController,
-                      validator: (value) => Validation.isEmpty(value, 'email'),
+                      validator: (value) =>
+                          Validation.isEmpty(value?.trim(), 'email'),
                       isLabel: false,
                     ),
-                    Text('Password', style: AppFonts.normalBold),
+                    Text('Password', style: AppFonts.normalBoldBlack),
                     TextFormFieldWidget(
                       hintText: 'Password',
                       controller: passwordController,
-                      validator: (value) => Validation.isPassword(value),
+                      validator: (value) =>
+                          Validation.isPassword(value?.trim()),
                       isLabel: false,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: ButtonWidget(
-                        title: 'LOGIN',
-                        onPress: () {},
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: BlocListener<LoginBloc, LoginState>(
+                        listener: (context, state) {},
+                        child: ButtonWidget(
+                          title: 'LOGIN',
+                          onPress: () {
+                            if (loginKey.currentState!.validate()) {
+                              final loginData = {
+                                'email': emailController.text,
+                                'password': passwordController.text,
+                              };
+                              context.read<LoginBloc>().add(
+                                  LoginButtonClickedEvent(
+                                      loginData: loginData, context: context));
+                            }
+                          },
+                        ),
                       ),
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Text('OR')],
+                    ),
+                    GoogleButtonWidget(
+                        title: 'Signup With Google', onPress: () {}),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "You don't Have an account?",
+                          style: TextStyle(color: AppColors.black),
+                        ),
+                        const SizedBox(width: 4),
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen())),
+                          child: Text(
+                            'Sign In',
+                            style: TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 ),

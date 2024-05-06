@@ -7,4 +7,6 @@ class AppFonts {
 
   static TextStyle normalBold = TextStyle(
       fontWeight: FontWeight.bold, color: AppColors.white, fontSize: 18);
+  static TextStyle normalBoldBlack =
+      const TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
 }

@@ -17,6 +17,7 @@ class TextFormFieldWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: TextFormField(
+        validator: validator,
         controller: controller,
         decoration: InputDecoration(
             label: isLabel ? Text(hintText) : const SizedBox(),
@@ -26,6 +27,8 @@ class TextFormFieldWidget extends StatelessWidget {
             focusedBorder:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             errorBorder:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
       ),
     );
