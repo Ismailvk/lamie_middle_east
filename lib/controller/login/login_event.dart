@@ -12,6 +12,8 @@ final class LoginButtonClickedEvent extends LoginEvent {
 final class GetLoggedUserData extends LoginEvent {
   final int userId;
   final String token;
+  BuildContext context;
 
-  GetLoggedUserData({required this.userId, required this.token});
+  GetLoggedUserData(
+      {required this.userId, required this.token, required this.context});
 }

@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:lamie_middle_east/controller/login/login_bloc.dart';
 import 'package:lamie_middle_east/data/shared_preference/shared_preference.dart';
 import 'package:lamie_middle_east/view/home_screen.dart';
 import 'package:lamie_middle_east/view/login_screen.dart';
@@ -33,13 +36,12 @@ class _SplashScreenState extends State<SplashScreen> {
     if (token != null) {
       Map<String, dynamic> decodeJwtToken = JwtDecoder.decode(token);
       int decodedToken = decodeJwtToken['user_id'];
-      print(decodedToken);
-      // ignore: use_build_context_synchronously
-      // Navigator.of(context).pushAndRemoveUntil(
-      //     MaterialPageRoute(builder: (context) => const HomeScreen()),
-      //     (route) => false);
+      context.read<LoginBloc>().add(GetLoggedUserData(
+          userId: decodedToken, token: token, context: context));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+          (route) => false);
     } else {
-      // ignore: use_build_context_synchronously
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => LoginScreen()),
           (route) => false);

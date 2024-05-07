@@ -4,4 +4,8 @@ sealed class LoginState {}
 
 final class LoginInitial extends LoginState {}
 
-final class LoginSuccessEvent extends LoginState {}
+final class GetUserDataSuccessState extends LoginState {
+  final List<Connection> chatList;
+
+  GetUserDataSuccessState({required this.chatList});
+}

@@ -16,4 +16,9 @@ class UserRepo {
     final url = '${ApiUrls.loggedUserData}/${userId.toString()}/';
     return ApiService.getApi(url, token);
   }
+
+  EitherResponse searchingUser(String searchingString) {
+    final url = '${ApiUrls.searching}=$searchingString';
+    return ApiService.getApi(url);
+  }
 }

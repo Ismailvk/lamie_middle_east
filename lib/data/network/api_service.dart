@@ -51,6 +51,8 @@ class ApiService {
       throw BadRequestExceptions();
     } else if (response.statusCode == 201) {
       return jsonDecode(response.body);
+    } else if (response.statusCode == 401) {
+      throw NoDataFound();
     } else {
       throw BadRequestExceptions();
     }

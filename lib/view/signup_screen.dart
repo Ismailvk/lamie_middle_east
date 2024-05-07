@@ -8,7 +8,6 @@ import 'package:lamie_middle_east/utils/snackbar.dart';
 import 'package:lamie_middle_east/utils/validation.dart';
 import 'package:lamie_middle_east/view/login_screen.dart';
 import 'package:lamie_middle_east/widgets/button_widget.dart';
-import 'package:lamie_middle_east/widgets/google_button_widget.dart';
 import 'package:lamie_middle_east/widgets/textformfied_widget.dart';
 
 // ignore: must_be_immutable
@@ -74,7 +73,6 @@ class SignupScreen extends StatelessWidget {
                     BlocListener<SignupBloc, SignupState>(
                       listener: (context, state) {
                         if (state is SignupFailedState) {
-                          print('account exist brooo');
                           topSnackbar(context, state.message, AppColors.orange);
                         }
                       },
@@ -95,13 +93,7 @@ class SignupScreen extends StatelessWidget {
                             }
                           }),
                     ),
-                    const SizedBox(height: 5),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Text('OR')],
-                    ),
-                    GoogleButtonWidget(
-                        title: 'Signup With Google', onPress: () {}),
+                    const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

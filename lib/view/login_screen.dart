@@ -5,6 +5,7 @@ import 'package:lamie_middle_east/constants/app_styles.dart';
 import 'package:lamie_middle_east/constants/image_strings.dart';
 import 'package:lamie_middle_east/controller/login/login_bloc.dart';
 import 'package:lamie_middle_east/utils/validation.dart';
+import 'package:lamie_middle_east/view/signup_screen.dart';
 import 'package:lamie_middle_east/widgets/button_widget.dart';
 import 'package:lamie_middle_east/widgets/google_button_widget.dart';
 import 'package:lamie_middle_east/widgets/textformfied_widget.dart';
@@ -94,9 +95,9 @@ class LoginScreen extends StatelessWidget {
                         GestureDetector(
                           onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
-                                  builder: (context) => LoginScreen())),
+                                  builder: (context) => SignupScreen())),
                           child: Text(
-                            'Sign In',
+                            'Sign Up',
                             style: TextStyle(
                               color: AppColors.primaryColor,
                               fontWeight: FontWeight.bold,

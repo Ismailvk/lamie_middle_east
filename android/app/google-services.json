@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "339366330932",
+    "project_id": "lamie-middle-east",
+    "storage_bucket": "lamie-middle-east.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339366330932:android:f60227cab6a59dbbdf4061",
+        "android_client_info": {
+          "package_name": "com.example.lamie_middle_east"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFCgRpGlNlEClRqSY_fvGoQcaEVErHoiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

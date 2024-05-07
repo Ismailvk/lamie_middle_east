@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lamie_middle_east/constants/app_colors.dart';
 import 'package:lamie_middle_east/controller/login/login_bloc.dart';
 import 'package:lamie_middle_east/controller/signup/signup_bloc.dart';
+import 'package:lamie_middle_east/controller/user/user_bloc.dart';
 import 'package:lamie_middle_east/data/shared_preference/shared_preference.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lamie_middle_east/view/splash_screen.dart';
@@ -22,9 +23,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<SignupBloc>(create: (context) => SignupBloc()),
         BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
+        BlocProvider<UserBloc>(create: (context) => UserBloc()),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Lamie Middle East',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
           useMaterial3: true,

@@ -3,4 +3,7 @@ class ApiUrls {
   static const String login = 'https://backendrealchat.molla.cloud/token/';
   static const String loggedUserData =
       'https://backendrealchat.molla.cloud/chat/connections';
+
+  static const String searching =
+      'https://backendrealchat.molla.cloud/chat/search/?search';
 }

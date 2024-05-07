@@ -15,3 +15,7 @@ class BadRequestExceptions extends AppExceptions {
 class RequestTimeOutExceptions extends AppExceptions {
   RequestTimeOutExceptions() : super(message: 'Request Time Out');
 }
+
+class NoDataFound extends AppExceptions {
+  NoDataFound() : super(message: 'No Data Found');
+}

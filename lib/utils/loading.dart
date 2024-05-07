@@ -73,7 +73,7 @@ class LoadingIcon extends StatelessWidget {
     return Center(
       child: LoadingAnimationWidget.twistingDots(
         leftDotColor: AppColors.primaryColor,
-        rightDotColor: AppColors.white,
+        rightDotColor: AppColors.lightGrey,
         size: 75,
       ),
     );
