@@ -1,10 +1,15 @@
+// ignore_for_file: void_checks
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lamie_middle_east/constants/app_colors.dart';
 import 'package:lamie_middle_east/constants/app_styles.dart';
 import 'package:lamie_middle_east/constants/image_strings.dart';
+import 'package:lamie_middle_east/controller/google_signin/google_signin_bloc.dart';
 import 'package:lamie_middle_east/controller/login/login_bloc.dart';
+import 'package:lamie_middle_east/utils/snackbar.dart';
 import 'package:lamie_middle_east/utils/validation.dart';
+import 'package:lamie_middle_east/view/home_screen.dart';
 import 'package:lamie_middle_east/view/signup_screen.dart';
 import 'package:lamie_middle_east/widgets/button_widget.dart';
 import 'package:lamie_middle_east/widgets/google_button_widget.dart';
@@ -20,7 +25,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
     return Scaffold(
       body: Center(
         child: Padding(
@@ -36,12 +40,9 @@ class LoginScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset(AppImageStrings.loginImage),
-                    Text(
-                      'Welcome Back!',
-                      style: AppFonts.welcomeStyle,
-                    ),
+                    Text('Welcome Back!', style: AppFonts.welcomeStyle),
                     const Text('Login your Account'),
-                    SizedBox(height: size.height / 34),
+                    const SizedBox(height: 2),
                     Text('Username or Email', style: AppFonts.normalBoldBlack),
                     TextFormFieldWidget(
                       hintText: 'Email',
@@ -82,8 +83,37 @@ class LoginScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [Text('OR')],
                     ),
-                    GoogleButtonWidget(
-                        title: 'Signup With Google', onPress: () {}),
+                    BlocListener<GoogleSigninBloc, GoogleSigninState>(
+                      listener: (context, state) {
+                        if (state is GoogleSigninSuccessState) {
+                          Map<String, String> signinData = {
+                            'email': state.email,
+                            'access_token': state.accessToken,
+                          };
+                          context
+                              .read<GoogleSigninBloc>()
+                              .add(PassLoginDetailsToApiEvent(map: signinData));
+                        } else if (state is GoogleSigninFailedState) {
+                          return topSnackbar(
+                              context, state.errorMessage, AppColors.red);
+                        } else if (state is PassLoginDetailsToApiSuccessState) {
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (context) => const HomeScreen()),
+                              (route) => false);
+                        } else if (state is PassLoginDetailsToApiFailedState) {
+                          return topSnackbar(
+                              context, state.errorMessage, AppColors.red);
+                        }
+                      },
+                      child: GoogleButtonWidget(
+                          title: 'Signup With Google',
+                          onPress: () {
+                            context
+                                .read<GoogleSigninBloc>()
+                                .add(GoogleUserSigninEvent());
+                          }),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

@@ -18,8 +18,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<GetLoggedUserData>(getLoggedUserData);
   }
 
-  Timer? _debounceTimer;
-
   FutureOr<void> login(
       LoginButtonClickedEvent event, Emitter<LoginState> emit) async {
     LoadingController.showLoadingDialog(event.context);

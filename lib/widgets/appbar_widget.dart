@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:lamie_middle_east/constants/app_colors.dart';
 import 'package:lamie_middle_east/data/shared_preference/shared_preference.dart';
 import 'package:lamie_middle_east/view/login_screen.dart';

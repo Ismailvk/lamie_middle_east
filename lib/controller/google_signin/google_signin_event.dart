@@ -5,7 +5,7 @@ abstract class GoogleSigninEvent {}
 final class GoogleUserSigninEvent extends GoogleSigninEvent {}
 
 final class PassLoginDetailsToApiEvent extends GoogleSigninEvent {
-  final Map<String, dynamic> map;
+  final Map<String, String> map;
   PassLoginDetailsToApiEvent({required this.map});
 }
 

@@ -21,4 +21,9 @@ class UserRepo {
     final url = '${ApiUrls.searching}=$searchingString';
     return ApiService.getApi(url);
   }
+
+  EitherResponse googleSignin(Map<String, String> signinData) {
+    const url = ApiUrls.googleSignin;
+    return ApiService.postApi(signinData, url);
+  }
 }

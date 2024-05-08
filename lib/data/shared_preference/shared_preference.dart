@@ -6,6 +6,7 @@ class SharedPref {
   static SharedPref get instance => _instance;
 
   static const String token = 'token';
+  static const String googleaccessToken = 'accessToken';
 
   late SharedPreferences sharedPref;
 
@@ -23,5 +24,9 @@ class SharedPref {
 
   removeToken() async {
     await sharedPref.remove(token);
+  }
+
+  storeAccessToken(String accessToken) async {
+    await sharedPref.setString(googleaccessToken, accessToken);
   }
 }

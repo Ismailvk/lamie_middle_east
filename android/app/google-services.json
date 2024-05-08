@@ -12,7 +12,20 @@
           "package_name": "com.example.lamie_middle_east"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "339366330932-a0itj3ha3ag0mk3ft1p5imtjup8kqin6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lamie_middle_east",
+            "certificate_hash": "b63b53f91489b27b3ff388fd31beb6f684b89ecb"
+          }
+        },
+        {
+          "client_id": "339366330932-s3laq883jr5su61b0tn5jjs47ee8tr7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDFCgRpGlNlEClRqSY_fvGoQcaEVErHoiU"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339366330932-s3laq883jr5su61b0tn5jjs47ee8tr7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

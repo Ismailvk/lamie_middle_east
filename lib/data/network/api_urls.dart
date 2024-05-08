@@ -6,4 +6,7 @@ class ApiUrls {
 
   static const String searching =
       'https://backendrealchat.molla.cloud/chat/search/?search';
+
+  static const String googleSignin =
+      'https://backendrealchat.molla.cloud/google_login/';
 }
